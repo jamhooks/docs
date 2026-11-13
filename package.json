@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "sync": "node scripts/sync-reference.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -14,5 +14,9 @@
     "astro": "^7.3.6",
     "sharp": "^0.35.3",
     "starlight-links-validator": "^0.27.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

@@ -1,40 +1,40 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Jamhooks documentation
+description: Build, test and run IVR call flows for Jambonz.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: Build IVR call flows visually, test them before anyone calls, and run them on Jambonz.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Quick start
+      link: /getting-started/quick-start/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Reference
+      link: /reference/flows/
+      icon: open-book
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<CardGrid>
+	<LinkCard
+		title="Quick start"
+		description="Run Jamhooks on your own machine and build a first flow."
+		href="/getting-started/quick-start/"
+	/>
+	<LinkCard
+		title="Connect Jambonz"
+		description="Point a Jambonz application at a flow and take a real call."
+		href="/getting-started/connect-jambonz/"
+	/>
+	<LinkCard
+		title="Building flows"
+		description="Every component, its outlets, conditions and variables."
+		href="/reference/flows/"
+	/>
+	<LinkCard
+		title="Deployment"
+		description="Run an instance for real callers: secrets, TLS, monitoring."
+		href="/reference/deployment/"
+	/>
 </CardGrid>

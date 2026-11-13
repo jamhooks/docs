@@ -1,0 +1,76 @@
+name: Sync reference
+
+# Every morning (or when run by hand) this looks for a newer release of the app and, when
+# there is one, opens a PR that re-syncs src/content/docs/reference/ from it and bumps
+# jamhooks.version. The site is built before the PR is opened, so a release that renamed a
+# heading the manuals link to fails here, not on master.
+#
+# A PR opened with the workflow token does not start other workflows, so the build in
+# this job is that PR's check.
+#
+# Needs, while the app repo is private: the secret JAMHOOKS_READ_TOKEN, a fine-grained
+# token with read-only Contents access to jamhooks/jamhooks and nothing else. Drop the
+# `token:` line once the app repo is public. Also needs "Allow GitHub Actions to create
+# and approve pull requests" (Settings > Actions > General).
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-reference
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: jamhooks/jamhooks
+          token: ${{ secrets.JAMHOOKS_READ_TOKEN }}
+          path: app-src
+          fetch-depth: 0 # every tag, to find the newest release
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+
+      - id: sync
+        run: |
+          node scripts/sync-reference.mjs --repo app-src --latest
+          if [ -n "$(git status --porcelain -- jamhooks.version src/content/docs/reference)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$(cat jamhooks.version)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: steps.sync.outputs.changed == 'true'
+        run: npm ci && npm run build
+
+      - if: steps.sync.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.sync.outputs.version }}
+        run: |
+          branch="sync/reference-$VERSION"
+          if git ls-remote --exit-code --heads origin "$branch" > /dev/null; then
+            echo "A PR branch for $VERSION already exists; nothing to do."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add jamhooks.version src/content/docs/reference
+          git commit -m "docs(reference): sync from jamhooks $VERSION"
+          git push origin "$branch"
+          gh pr create --base master --head "$branch" \
+            --title "Sync reference from jamhooks $VERSION" \
+            --body "Re-synced src/content/docs/reference/ from the app's $VERSION tag. The site built and every internal link and anchor checked out. Check the diff for anything the hand-written manuals should now mention."

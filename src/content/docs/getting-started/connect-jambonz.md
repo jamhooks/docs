@@ -1,11 +1,11 @@
 ---
 title: Connect Jambonz
-description: Point a Jambonz application at a Jamhooks flow and take a real call.
+description: Point a Jambonz application at a JamHooks flow and take a real call.
 sidebar:
   order: 2
 ---
 
-A Jambonz application calls two webhooks. Jamhooks serves both for every flow, at a URL
+A Jambonz application calls two webhooks. JamHooks serves both for every flow, at a URL
 built from the flow's name.
 
 ## Set the application's webhooks
@@ -17,7 +17,7 @@ In the Jambonz portal, open the application and set both webhooks, with method *
 | Calling webhook | `<BASE_WEBHOOK_URL>/webhooks/<flow name>` |
 | Call status webhook | `<BASE_WEBHOOK_URL>/webhooks/<flow name>/callstatus` |
 
-`BASE_WEBHOOK_URL` is the public address Jambonz reaches Jamhooks on. A flow's name
+`BASE_WEBHOOK_URL` is the public address Jambonz reaches JamHooks on. A flow's name
 appears in its URL as it is, slashes included: a flow named `acme/dev/inbound` is served
 at `/webhooks/acme/dev/inbound`. The flow's detail page shows both URLs.
 

@@ -1,13 +1,13 @@
 ---
 title: Quick start
-description: Run Jamhooks on your own machine and build a first call flow.
+description: Run JamHooks on your own machine and build a first call flow.
 sidebar:
   order: 1
 ---
 
-Jamhooks is a visual editor for IVR call flows on [Jambonz](https://jambonz.org). You
+JamHooks is a visual editor for IVR call flows on [Jambonz](https://jambonz.org). You
 build a flow from components (Menu, Play Prompt, Transfer, Conditional, AI Agent and
-more). Jamhooks stores and versions it, compiles it into Jambonz verbs, and serves it as
+more). JamHooks stores and versions it, compiles it into Jambonz verbs, and serves it as
 the webhooks a Jambonz application calls.
 
 This page gets an instance running on your own machine, for evaluation. To run it for

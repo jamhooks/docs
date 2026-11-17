@@ -11,7 +11,7 @@ export default defineConfig({
 	site: 'https://docs.jamhooks.com',
 	integrations: [
 		starlight({
-			title: 'Jamhooks',
+			title: 'JamHooks',
 			description: 'Visual IVR call flows for Jambonz: build, test and run them.',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/jamhooks' }],
 			// Hand-written pages are edited here. The synced reference pages set their own

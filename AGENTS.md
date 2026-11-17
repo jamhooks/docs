@@ -1,11 +1,11 @@
 # AGENTS.md
 
-Working guide for AI coding agents (and humans) in the Jamhooks docs site.
+Working guide for AI coding agents (and humans) in the JamHooks docs site.
 
 ## What this is
 
-The documentation website for [Jamhooks](https://github.com/jamhooks/jamhooks), a visual
-IVR flow manager for Jambonz. Built with Astro + Starlight; deployed to GitHub Pages from
+The documentation website for [JamHooks](https://github.com/jamhooks/jamhooks), a visual call flow
+designer for Jambonz. Built with Astro + Starlight; deployed to GitHub Pages from
 `master` (`.github/workflows/deploy.yml`).
 
 ## Commands

@@ -1,6 +1,6 @@
-# Jamhooks docs
+# JamHooks docs
 
-The documentation website for [Jamhooks](https://github.com/jamhooks/jamhooks): manuals,
+The documentation website for [JamHooks](https://github.com/jamhooks/jamhooks): manuals,
 guides and the reference, built with [Astro Starlight](https://starlight.astro.build).
 
 ```bash

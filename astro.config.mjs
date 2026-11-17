@@ -5,10 +5,10 @@ import starlightLinksValidator from 'starlight-links-validator';
 
 // https://astro.build/config
 export default defineConfig({
-	// Set to the docs domain (e.g. https://docs.example.com) once it is chosen: Starlight
-	// then writes a sitemap and canonical URLs. The site is built for a domain of its own,
-	// served from the root; there is no `base` path, so links are written as `/guides/...`.
-	// site: 'https://docs.example.com',
+	// The docs domain (same as CNAME): Starlight writes a sitemap and canonical URLs from
+	// it. The site is built for a domain of its own, served from the root; there is no
+	// `base` path, so links are written as `/guides/...`.
+	site: 'https://docs.jamhooks.com',
 	integrations: [
 		starlight({
 			title: 'Jamhooks',

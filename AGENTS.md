@@ -14,9 +14,6 @@ designer for Jambonz. Built with Astro + Starlight; deployed to GitHub Pages fro
 npm ci                 # install from package-lock.json
 npm run dev            # http://localhost:4321
 npm run build          # build into dist/; also fails on any broken internal link or #anchor
-npm run sync           # re-sync the reference pages from ../jamhooks at jamhooks.version
-npm run sync -- --latest            # ...from the newest release tag instead
-npm run sync -- --version v1.6.0    # ...from a given tag
 ```
 
 When starting the dev server from an agent, use `astro dev --background` and manage it
@@ -29,17 +26,23 @@ with `astro dev stop`, `astro dev status` and `astro dev logs`.
 | `src/content/docs/getting-started/` | Tutorials: install, connect Jambonz, first flow | Here |
 | `src/content/docs/guides/` | How-to manuals for one task each (add the sidebar group with the first page) | Here |
 | `src/content/docs/concepts/` | Explanations: the component tree, how a call runs | Here |
-| `src/content/docs/reference/` | **Generated.** The app's `docs/*.md` and `CHANGELOG.md` at one release tag | **Never here** |
-| `jamhooks.version` | The app release the reference pages come from | `npm run sync` |
+| `src/content/docs/reference/` | Reference: flows, runtime, configuration, deployment, operations, hardening, privacy, API, changelog | Here |
 
-The reference pages are owned by the app repo: its tests read them and they change in the
-same commit as the code. `scripts/sync-reference.mjs` copies them at a release tag, and
-the `Sync reference` workflow opens a PR when a new release appears. To fix a reference
-page, change the file in the app repo; it arrives here with the next release.
+All user and operator documentation lives in this repo, the reference included. The app
+repo (`jamhooks/jamhooks`) keeps only what an agent or developer needs to change the app
+(`AGENTS.md`, `agent-docs/`) and its own `CHANGELOG.md`.
 
-The rule for what goes where: if a test in the app repo could check it (a setting, an
-endpoint, an alert), it is reference and lives in the app repo. Everything that teaches
-lives here.
+The docs describe the **latest released** version of the app. A change for an unreleased
+app version waits on a branch until that release is tagged; then, in one PR:
+
+- bump the release in `reference/deployment.md` (the tag to check out, the image name,
+  `APP_VERSION`);
+- copy the release's section of the app's `CHANGELOG.md` into `reference/changelog.md`;
+- merge the held-back doc changes for that release.
+
+Nothing checks the reference against the app any more, so when you document a setting,
+an endpoint, an alert title or a log field, take the name from the app's code at the
+release tag (`app/config.py`, `.env.example`, `monitoring/grafana/provisioning/alerting/rules.yaml`).
 
 ## Writing rules
 

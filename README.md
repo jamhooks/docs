@@ -9,6 +9,5 @@ npm run dev      # http://localhost:4321
 npm run build    # into dist/, validating every internal link
 ```
 
-The pages under `src/content/docs/reference/` are generated from the app repo at the
-release named in `jamhooks.version`; edit those in the app repo, not here. Everything else
-is written here. [AGENTS.md](AGENTS.md) has the details.
+Every page is written here, the reference included; the docs describe the latest
+released version of the app. [AGENTS.md](AGENTS.md) has the details.

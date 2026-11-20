@@ -14,11 +14,10 @@ export default defineConfig({
 			title: 'JamHooks',
 			description: 'Visual IVR call flows for Jambonz: build, test and run them.',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/jamhooks' }],
-			// Hand-written pages are edited here. The synced reference pages set their own
-			// `editUrl` (scripts/sync-reference.mjs), since their source is the app repo.
+			// Every page, the reference included, is edited in this repo.
 			editLink: { baseUrl: 'https://github.com/jamhooks/docs/edit/master/' },
-			// Fails the build on a broken internal link or #anchor. That is also what catches
-			// an app release that renamed a heading the manuals link to.
+			// Fails the build on a broken internal link or #anchor, such as a renamed heading
+			// a manual still links to.
 			plugins: [starlightLinksValidator()],
 			sidebar: [
 				{

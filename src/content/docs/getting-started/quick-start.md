@@ -26,6 +26,10 @@ docker compose up --build
 Open `http://127.0.0.1:5001`. The first start downloads the editor's front-end assets
 once.
 
+The editor opens on the **License** page: JamHooks needs a license key first. Register
+your company in the [JamHooks Portal](https://jamhooks.app), start the trial, and paste
+its key into the page ([License](/reference/license/) has the details).
+
 :::caution
 Without a `.env` file this instance runs **open**: there is no editor login, and anyone
 who can reach it can call its webhooks. Docker publishes the port on `127.0.0.1` only, so

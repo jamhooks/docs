@@ -168,11 +168,20 @@ the values of *obscure* environment variables the same way.
   and request counts per IP address (for one minute), each for at most 10,000
   addresses, for rate limiting.
 
+## What the app sends elsewhere
+
+Besides what flows send (an HTTP Request node's requests, the verbs Jambonz receives),
+the app itself sends one thing: the **license check-in** to the JamHooks Portal
+(`jamhooks.app`), when the key is entered, at every start and about once a day. It
+carries the license key, this install's random id, the host name in `BASE_WEBHOOK_URL`
+and the JamHooks version: no caller, call or flow data, and no account names
+([License](/reference/license/#check-ins)).
+
 ## The store and backups
 
 The `storedata` volume holds flows, their version history (up to
-`HISTORY_MAX_VERSIONS` earlier copies per flow), compiled flows and the session-signing
-key. **It holds no caller data**, unless an author puts some in a flow: a list of
+`HISTORY_MAX_VERSIONS` earlier copies per flow), compiled flows, the session-signing
+key and the license (its key, the portal's last lease and this install's id). **It holds no caller data**, unless an author puts some in a flow: a list of
 caller numbers in a Conditional, an employee's number in a Transfer, a name in a
 prompt. Those then sit in the flow and in its version history, which also records the account
 that saved each version. Deleting a flow deletes its version history with it.

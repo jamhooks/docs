@@ -45,6 +45,7 @@ python3 -c "import secrets; print(secrets.token_urlsafe(32))"
 | `AUTH_READONLY_PASSWORD` | **You**: generate it | Only if you want the view-only account |
 | `GRAFANA_ADMIN_PASSWORD` | **You**: generate it | Yes, with the monitoring stack on (step 7). Grafana won't start without it |
 | Session signing key | The app: written to `.sesskey` (mode `0600`) on the store volume at first start | Nothing to do. Deleting it signs everyone out. Anyone holding it can forge a sign-in, so treat store backups as secrets |
+| License key | **The [JamHooks Portal](https://jamhooks.app)**: enter it on the editor's License page after step 4, not in `.env` | Yes. Until then the editor stays on the License page (calls are still answered) |
 
 Both generators print no `$`, which Docker Compose would try to expand. A password you
 pick yourself that contains `$` must be single-quoted in `.env`. Anything under 16
@@ -129,6 +130,11 @@ You want an `Editor login enabled` line and **no** `SECURITY:` or `CONFIG:` line
 any later change to `.env`, run `docker compose up -d` again: it recreates the container
 with the new values (`docker compose restart` keeps the old ones).
 
+Then sign in and enter the license key on the **License** page, where the editor opens
+until you do ([License](/reference/license/)). The install checks the key with the
+portal then, at every start and about once a day, so the host needs **outbound HTTPS to
+`jamhooks.app`**.
+
 **5. Point Jambonz at it.** An application has two webhooks; set both (method POST):
 the **calling webhook** `https://ivr.example.com/webhooks/<flow name>`, and the **call
 status webhook** `…/webhooks/<flow name>/callstatus`; without the second, the flow's
@@ -136,8 +142,8 @@ Call Status and Disconnect handlers never run. The flow's detail page lists both
 `WEBHOOK_SECRET` set there is nothing else to enter; if you use webhook basic auth
 instead, enter the same username and password on both.
 
-**6. Back up the store volume.** Flows, version history and the session key all live in
-the `storedata` volume (`/app/data` in the container). There is no database to dump:
+**6. Back up the store volume.** Flows, version history, the session key and the
+license all live in the `storedata` volume (`/app/data` in the container). There is no database to dump:
 `scripts/backup.sh` stops the app, copies the volume and starts it again, and
 `scripts/restore.sh` puts an archive back;
 [OPERATIONS.md](/reference/operations/#backup-and-restore) has the details and a cron line. A

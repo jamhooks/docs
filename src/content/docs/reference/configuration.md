@@ -9,6 +9,10 @@ All configuration is environment variables, read by app/config.py
 setting with a comment and is the place to start a deployment's `.env` from (see
 [DEPLOYMENT.md](/reference/deployment/)).
 
+The license key is not a setting: it is entered on the editor's License page
+([License](/reference/license/)), and nothing in the environment can change it or the
+portal it is checked with.
+
 Bad configuration is reported, never refused: the app always starts. A numeric setting
 below what it accepts (negative, or `0` where `0` is not listed as "disables") is
 replaced by its default with a warning, so a typo never switches a guard off. An unsafe

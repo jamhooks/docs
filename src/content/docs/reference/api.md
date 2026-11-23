@@ -33,6 +33,11 @@ webhooks have their own ([HARDENING.md](/reference/hardening/)).
 A save that won't compile is a `422` whose `issues` lists what is wrong; a name already
 taken is a `409`, as is a save based on a version someone else has since replaced.
 
+Until the install has a license key, every REST route answers `403` with an `error`
+naming the License page. With one, a create, import or duplicate that the license doesn't
+allow (it is at its webhook limit) is a `403` whose `error` says so; nothing else is
+limited ([License](/reference/license/)).
+
 `/validate` (the editor's live check, on the stored flow or on a candidate sent as the
 body) answers like `/compile` without building anything, plus `variables`: every name the
 flow's components store into, in flow order. The editor needs that list to draw a

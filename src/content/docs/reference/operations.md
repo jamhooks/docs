@@ -216,6 +216,8 @@ Everything the app keeps is in the `storedata` volume (`/app/data` in the contai
 | `store/compiled/<id>.json` | Compiled flows: regenerated on save, safe to lose | Optional |
 | `store/.sesskey` | The key that signs sign-in sessions and known-browser cookies | Yes, **a secret** |
 | `store/.lock` | The single-writer lock file (empty) | Harmless |
+| `store/license.json` | The license key and the portal's last lease ([License](/reference/license/)) | Yes |
+| `store/.install-id` | This install's id, as the portal knows it | Yes |
 
 There is no database to dump. The volume holds no call records and no caller data
 (see [PRIVACY.md](/reference/privacy/)), but **treat every backup as a secret**: with

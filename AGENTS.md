@@ -8,6 +8,11 @@ The documentation website for [JamHooks](https://github.com/jamhooks/jamhooks), 
 designer for Jambonz. Built with Astro + Starlight; deployed to GitHub Pages from
 `master` (`.github/workflows/deploy.yml`).
 
+Who JamHooks is for, how it is sold and which decisions are still open are in
+`CONTEXT.md` of the workspace repo (`jamhooks/workspace`; `../CONTEXT.md` when this repo
+is cloned there). Read it before writing a page, and never put one of its open decisions
+(the licence of the code, prices, JamHooks Cloud) into the docs.
+
 ## Commands
 
 ```bash

@@ -50,7 +50,8 @@ about once a day. The portal answers with a **lease**: a statement of the licens
 signed by the portal and checked against the portal's public key built into the image.
 The install trusts a lease for **14 days** without a check-in, so:
 
-- The host needs **outbound HTTPS to `jamhooks.app`**.
+- The host needs **outbound HTTPS to `license.jamhooks.app`**, the portal's license
+  server.
 - When the portal can't be reached, nothing changes for 14 days; after that the Free
   limits apply until a check-in gets through. Calls are never affected.
 

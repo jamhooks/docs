@@ -171,8 +171,8 @@ the values of *obscure* environment variables the same way.
 ## What the app sends elsewhere
 
 Besides what flows send (an HTTP Request node's requests, the verbs Jambonz receives),
-the app itself sends one thing: the **license check-in** to the JamHooks Portal
-(`jamhooks.app`), when the key is entered, at every start and about once a day. It
+the app itself sends one thing: the **license check-in** to the JamHooks Portal's
+license server (`license.jamhooks.app`), when the key is entered, at every start and about once a day. It
 carries the license key, this install's random id, the host name in `BASE_WEBHOOK_URL`
 and the JamHooks version: no caller, call or flow data, and no account names
 ([License](/reference/license/#check-ins)).

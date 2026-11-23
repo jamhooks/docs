@@ -133,7 +133,7 @@ with the new values (`docker compose restart` keeps the old ones).
 Then sign in and enter the license key on the **License** page, where the editor opens
 until you do ([License](/reference/license/)). The install checks the key with the
 portal then, at every start and about once a day, so the host needs **outbound HTTPS to
-`jamhooks.app`**.
+`license.jamhooks.app`**.
 
 **5. Point Jambonz at it.** An application has two webhooks; set both (method POST):
 the **calling webhook** `https://ivr.example.com/webhooks/<flow name>`, and the **call
